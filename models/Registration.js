@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
@@ -43,3 +44,6 @@ Registration.init(
 );
 
 module.exports = Registration;
+=======
+
+>>>>>>> f1d5652e61011a51ffb91044824b13c5410d9c22

@@ -1,5 +1,6 @@
 const User = require('./User');
 const Event = require('./Event');
+<<<<<<< HEAD
 const Registration = require('./Registration');
 
 User.hasMany(Event, {
@@ -38,3 +39,16 @@ Event.hasMany(Registration, {
 });
 
 module.exports = { User, Event, Registration };
+=======
+const Registration = require('./Registration')
+
+User.hasMany(Event, {
+    foreignKey: 'user_id'
+});
+
+Event.belongsTo(User, {
+    foreignKey: 'user_id'
+});
+
+module.exports = { User, Event,};
+>>>>>>> f1d5652e61011a51ffb91044824b13c5410d9c22
