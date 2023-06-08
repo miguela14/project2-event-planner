@@ -50,10 +50,5 @@ User.init(
         modelName: 'User',
       }
     );
-    
-<<<<<<< HEAD
-    module.exports = User;
-=======
-    module.exports = User;
-    
->>>>>>> f1d5652e61011a51ffb91044824b13c5410d9c22
+
+module.exports = User;
