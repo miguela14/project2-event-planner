@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User} = require("../../models");
+const { User } = require("../../models");
 
 // Get all User
 router.get("/", async (req, res) => {
@@ -59,4 +59,3 @@ router.delete("/:id", async (req, res) => {
 });
 
 module.exports = router;
-
