@@ -1,1 +1,29 @@
-
+[
+    {
+        "title": "Conference 1",
+        "description": "A conference on technology",
+        "date": "2023-06-10",
+        "time": "09:00:00",
+        "duration": 120,
+        "location": "Conference Center A",
+        "user_id": 1
+    },
+    {
+        "title": "Workshop 1",
+        "description": "Hands-on workshop on web development",
+        "date": "2023-06-15",
+        "time": "14:30:00",
+        "duration": 90,
+        "location": "Workshop Room B",
+        "user_id": 2
+    },
+    {
+        "title": "Seminar 1",
+        "description": "Educational seminar on science",
+        "date": "2023-06-20",
+        "time": "18:00:00",
+        "duration": 120,
+        "location": "Seminar Hall C",
+        "user_id": 1
+    }
+]

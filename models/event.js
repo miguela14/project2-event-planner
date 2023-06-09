@@ -1,7 +1,7 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/config');
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/config");
 
-class Event extends Model {}
+class Event extends Model { }
 
 Event.init(
     {
@@ -35,20 +35,12 @@ Event.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        user_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'User',
-                key: 'id',
-            },
-        },
     },
     {
         sequelize,
         timestamps: false,
         underscored: true,
-        modelName: 'Event'
+        modelName: "Event",
     }
 );
 
