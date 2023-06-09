@@ -1,26 +1,22 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
-// Get all User
-router.get("/", async (req, res) => {
+// Create new User
+router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
 
     req.session.save(() => {
       req.session.user_id = userData.id;
-      (req.session.logged_in = true), res.status(200).json(userData);
+      req.session.logged_in = true;
+      res.status(200).json(userData);
     });
   } catch (err) {
-    res.status(404).json({ err: "error loading page" });
+    res.status(500).json({ err: "error occured on the server" });
   }
 });
 
-// Get one User
-router.get("/:id", async (req, res) => {
-  // Find a single User by the id
-});
-
-// Create a new User
+// User Login
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -52,10 +48,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Delete user
-router.delete("/:id", async (req, res) => {
-  // Delete one User by its `id` value
-  // Delete associated events first
+// User Logout
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
 });
 
 module.exports = router;
