@@ -1,43 +1,31 @@
 const router = require("express").Router();
-const { User} = require("../../models");
-const { validateUser } = require ('utils/auth.js');
+const { User } = require("../../models");
 
-function redirectLogin(req, res, next) {
-  if (!req.session.logged_in) {
-      res.redirect('/login');
-  } else {
-      next();
-  }
-}
-// Get all User
-router.get("/", async (req, res) => {
+// Create new User
+router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
     req.session.save(() => {
       req.session.user_id = userData.id;
-      (req.session.logged_in = true), res.status(200).json(userData);
+      req.session.logged_in = true;
+      res.status(200).json(userData);
     });
   } catch (err) {
-    res.status(404).json({ err: "error loading page" });
+    res.status(500).json({ err: "error occured on the server" });
   }
 });
 
-// Get one User
-router.get("/:id", redirectLogin, async (req, res) => {
+// Get users
+router.get('/', async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.params.id} });
-    if (!user) {
-      res.status(404).json({error: 'User not found'});
-      return;
-    }
-    res.status(200).json(user);
-  }catch (err) {
-    res.status(500).json({error: 'Server Error'})
+    const users = await User.findAll(req.body);
+    res.status(200).json(users)
+  } catch (err) {
+    res.status(500).json({ err: 'error occured on server'});
   }
-  // Find a single User by the id
 });
 
-// Create a new User
+// User Login
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
@@ -69,17 +57,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
-// Delete user
-// Delete one User by its `id` value
-router.delete("/:id", redirectLogin, async (req, res) => {
-  try { 
-    await User.destroy({ where: {id: req.params.id}});
-    res.status(200).json({ message: "User deleted"});
-  }catch (err) {
-    res.status(500).json({ error: 'error deleting user'});
+// User Logout
+router.post('/logout', (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
   }
-  // Delete associated events first
 });
 
 module.exports = router;
-
