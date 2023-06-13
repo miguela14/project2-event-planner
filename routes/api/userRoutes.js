@@ -1,11 +1,18 @@
 const router = require("express").Router();
 const { User} = require("../../models");
+const { validateUser } = require ('utils/auth.js');
 
+function redirectLogin(req, res, next) {
+  if (!req.session.logged_in) {
+      res.redirect('/login');
+  } else {
+      next();
+  }
+}
 // Get all User
 router.get("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
-
     req.session.save(() => {
       req.session.user_id = userData.id;
       (req.session.logged_in = true), res.status(200).json(userData);
@@ -16,7 +23,17 @@ router.get("/", async (req, res) => {
 });
 
 // Get one User
-router.get("/:id", async (req, res) => {
+router.get("/:id", redirectLogin, async (req, res) => {
+  try {
+    const user = await User.findOne({ where: { id: req.params.id} });
+    if (!user) {
+      res.status(404).json({error: 'User not found'});
+      return;
+    }
+    res.status(200).json(user);
+  }catch (err) {
+    res.status(500).json({error: 'Server Error'})
+  }
   // Find a single User by the id
 });
 
@@ -53,8 +70,14 @@ router.post("/login", async (req, res) => {
 });
 
 // Delete user
-router.delete("/:id", async (req, res) => {
-  // Delete one User by its `id` value
+// Delete one User by its `id` value
+router.delete("/:id", redirectLogin, async (req, res) => {
+  try { 
+    await User.destroy({ where: {id: req.params.id}});
+    res.status(200).json({ message: "User deleted"});
+  }catch (err) {
+    res.status(500).json({ error: 'error deleting user'});
+  }
   // Delete associated events first
 });
 
