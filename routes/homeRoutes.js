@@ -3,22 +3,18 @@ const { Event, Registration, User } = require('../models');
 
 // Get all events for homepage
 router.get('/', async (req, res) => {
-    try {
-        const eventData = await Event.findAll({
-            include: [User],
-            order: [['date', 'time', 'ASC']]
-        });
-        const events = eventData.map((event) =>
-      event.get({ plain: true })
-    );
-        res.render('homepage', {
-            events,
-            loggedIn: req.session.loggedIn,
-          });
-        } catch (err) {
-          res.status(500).json(err);
-        }
+  try {
+    const eventData = await Event.findAll({
+      include: [User],
+      order: [['date', 'ASC'], ['time', 'ASC']]
+    });
+
+    res.status(200).json(eventData);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to retrieve events.' + err });
+  }
 });
+
 // Get one event by id
 router.get('/event/:id', async (req, res) => {
     try {
