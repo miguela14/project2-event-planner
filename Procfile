@@ -1,2 +1,2 @@
 worker: npm run seed
-web: npm start
+web: node server.js
