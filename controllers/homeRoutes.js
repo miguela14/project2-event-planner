@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ['name'],
+          attributes: ['username'],
         },
       ],
     });
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     const events = eventData.map((event) => event.get({ plain: true }));
 
     res.render('homepage', {
-      events,
+      ...events,
       logged_in: req.session.logged_in
     });
   } catch (err) {
