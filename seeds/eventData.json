@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Tech Conference",
+    "description": "A conference about the latest tech.",
+    "date": "2023-06-20",
+    "time": "09:00:00",
+    "duration": 480, 
+    "location": "Tech Hall, City"
+  },
+  {
+    "title": "Art Workshop",
+    "description": "Learn how to paint.",
+    "date": "2023-06-25",
+    "time": "14:00:00",
+    "duration": 180, 
+    "location": "Art Studio, City"
+  }
+]
