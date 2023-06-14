@@ -1,18 +1,10 @@
-const User = require ('..models/User');
-
-async function validateUser(email, password) {
-    const user = await User.findOne({ where: {email}});
-    if (!user){
-        return false;
+const withAuth = (req, res, next) => {
+    // redirect to login if not logged in.
+    if (!req.session.logged_in) {
+        res.redirect('/login');
+    } else {
+        next();
     }
-    const validPassword = await user.checkPassword(password);
-    if(!validPassword) {
-        return false;
-    }
-    return true;
-}
-
-
-module.exports = {
-    validateUser,
 };
+
+module.exports = withAuth;
