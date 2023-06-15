@@ -38,12 +38,14 @@
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
                             {{else}}
                             <li><a class="dropdown-item" href="/login">Login</a></li>
                             {{/if}}
                         </ul>
                     </li>
+                    {{#if logged_in}}
+                    <li><button class="btn btn-toolbar" id="logout">Logout</button></li>
+                    {{/if}}
                 </ul>
             </div>
         </div>
