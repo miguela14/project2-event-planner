@@ -1,0 +1,71 @@
+<!-- Button to trigger the modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#eventModal">
+    Create New Event!
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="eventModalLabel">Create Event</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Event creation form -->
+                <form class="new-event-form">
+                    <div class="mb-3">
+                        <label for="event-title" class="form-label">Event Title</label>
+                        <input type="text" class="form-control" id="event-title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="event-description" class="form-label">Description</label>
+                        <textarea class="form-control" id="event-description" rows="3" required></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="event-date" class="form-label">Date</label>
+                            <input type="date" class="form-control" id="event-date" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="event-location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="event-location" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="start-time" class="form-label">Start Time</label>
+                            <input type="time" class="form-control" id="start-time" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="end-time" class="form-label">End Time</label>
+                            <input type="time" class="form-control" id="end-time" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="event-submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{#if events.length}}
+<div class="col-md-6 event-list">
+    <h3>Current Events:</h3>
+    {{#each events as |event|}}
+    <div class="row mb-2">
+        <div class="col-md-8">
+            <h4><a href="/event/{{event.id}}">{{event.title}}</a></h4>
+        </div>
+        <div>
+            <button class="btn btn-danger" event-id="{{event.id}}">Delete</button>
+        </div>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+<script src="./js/event.js"></script>
