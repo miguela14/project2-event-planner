@@ -3,9 +3,9 @@ require('dotenv').config();
 
 let sequelize;
 
-if (process.env.CLEARDB_DATABSE_URL) {
+if (process.env.JAWSDB_URL) {
   // Use ClearDB on Heroku
-  sequelize = new Sequelize(process.env.CLEARDB_DATABSE_URL);
+  sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
   // Use local MySQL
   sequelize = new Sequelize(
