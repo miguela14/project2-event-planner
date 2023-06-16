@@ -67,9 +67,11 @@ router.get('/profile', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
+    const events = userData.Events.map((event) => event.get({ plain: true }));
 
     res.render('profile', {
-      ...user,
+      user,
+      events,
       logged_in: true
     });
   } catch (err) {

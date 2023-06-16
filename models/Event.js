@@ -28,13 +28,21 @@ Event.init(
             allowNull: false,
         },
         duration: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.TIME,
             allowNull: false,
         },
         location: {
             type: DataTypes.STRING,
             allowNull: false,
         },
+        user_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id',
+            }
+        }
     },
     {
         sequelize,

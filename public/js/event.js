@@ -5,13 +5,17 @@ const newFormHandler = async (event) => {
     const description = document.querySelector('#event-description').value.trim();
     const date = document.querySelector('#event-date').value.trim();
     const location = document.querySelector('#event-location').value.trim();
-    const startTime = document.querySelector('#start-time').value.trim();
-    const endTime = document.querySelector('#end-time').value.trim();
+    const time = document.querySelector('#start-time').value.trim();
+    const duration = document.querySelector('#end-time').value.trim();
 
-    if (title && description && date && location && startTime && endTime) {
+    console.log(title, description, date, location, time, duration);
+
+    if (title && description && date && location && time && duration) {
         const response = await fetch('/api/events', {
             method: 'POST',
-            body: JSON.stringify({ title, description, date, location, startTime, endTime }),
+            body: JSON.stringify({ 
+                title, description, date, location, time, duration, 
+            }),
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -21,6 +25,7 @@ const newFormHandler = async (event) => {
             document.location.replace('/profile');
         } else {
             alert('Failed to create Event');
+            console.log(response);
         }
     }
 };
