@@ -4,7 +4,7 @@
     "description": "A conference about the latest tech.",
     "date": "2023-06-20",
     "time": "09:00:00",
-    "duration": 480, 
+    "duration": "10:00:00", 
     "location": "Tech Hall, City"
   },
   {
@@ -12,7 +12,7 @@
     "description": "Learn how to paint.",
     "date": "2023-06-25",
     "time": "14:00:00",
-    "duration": 180, 
+    "duration": "17:00:00", 
     "location": "Art Studio, City"
   }
 ]
