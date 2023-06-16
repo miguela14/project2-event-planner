@@ -5,40 +5,21 @@ const userData = require('./userData.json');
 const eventData = require('./eventData.json');
 
 const seedDatabase = async () => {
-  try {
-    // Disable foreign key checks
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 0');
+  await sequelize.sync({ force: true });
 
-    // Drop tables
-    await Event.drop();
-    await User.drop();
-    console.log('Tables dropped.');
+  const users = await User.bulkCreate(userData, {
+    individualHooks: true,
+    returning: true,
+  });
 
-    // Sync the database
-    await sequelize.sync({ force: true });
-    console.log('Tables re-synced.');
-
-    const users = await User.bulkCreate(userData, {
-      individualHooks: true,
-      returning: true,
+  for (const event of eventData) {
+    await Event.create({
+      ...event,
+      user_id: users[Math.floor(Math.random() * users.length)].isSoftDeleted,
     });
-
-    for (const event of eventData) {
-      await Event.create({
-        ...event,
-        user_id: users[Math.floor(Math.random() * users.length)].id,
-      });
-    }
-
-    console.log('Database seeding completed.');
-  } catch (error) {
-    console.error('Error seeding database:', error);
-  } finally {
-    // Enable foreign key checks
-    await sequelize.query('SET FOREIGN_KEY_CHECKS = 1');
-
-    // Close the database connection
-    sequelize.close();
   }
+
+  process.exit(0);
 };
-seedDatabase();
+
+module.exports = seedDatabase;

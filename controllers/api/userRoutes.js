@@ -16,17 +16,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Get users
-// TODO: Move this to a better place.
-// router.get('/', async (req, res) => {
-//   try {
-//     const users = await User.findAll(req.body);
-//     res.status(200).json(users)
-//   } catch (err) {
-//     res.status(500).json({ err: 'error occured on server' });
-//   }
-// });
-
 // User Login
 router.post("/login", async (req, res) => {
   try {

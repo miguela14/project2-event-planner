@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     const events = eventData.map((event) => event.get({ plain: true }));
 
     res.render('homepage', {
-      ...events,
+      events,
       logged_in: req.session.logged_in
     });
   } catch (err) {
@@ -33,15 +33,8 @@ router.get('/events/:id', async (req, res) => {
     const eventData = await Event.findByPk(req.params.id, {
       include: [
         {
-          model: 'Event',
-          attributes: [
-            'id',
-            'title',
-            'description',
-            'date',
-            'time',
-            'location',
-          ],
+          model: User,
+          attributes: ['username'],
         },
       ],
     });
@@ -67,11 +60,9 @@ router.get('/profile', withAuth, async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
-    const events = userData.Events.map((event) => event.get({ plain: true }));
 
     res.render('profile', {
-      user,
-      events,
+      ...user,
       logged_in: true
     });
   } catch (err) {

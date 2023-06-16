@@ -23,11 +23,11 @@ Event.init(
             type: DataTypes.DATE,
             allowNull: false,
         },
-        time: {
+        start_time: {
             type: DataTypes.TIME,
             allowNull: false,
         },
-        duration: {
+        end_time: {
             type: DataTypes.TIME,
             allowNull: false,
         },
