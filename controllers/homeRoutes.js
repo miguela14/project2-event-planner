@@ -54,15 +54,21 @@ router.get('/events/:id', async (req, res) => {
 // GET: /profile
 router.get('/profile', withAuth, async (req, res) => {
   try {
+    const eventsData = await Event.findAll({
+      where: { user_id: req.session.user_id },
+    });
+
     const userData = await User.findByPk(req.session.user_id, {
       attributes: { exclude: ['password'] },
       include: [{ model: Event }],
     });
 
     const user = userData.get({ plain: true });
+    const events = eventsData.map((event) => event.get({ plain: true }));
 
     res.render('profile', {
-      ...user,
+      events,
+      user,
       logged_in: true
     });
   } catch (err) {

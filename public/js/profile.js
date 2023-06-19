@@ -8,15 +8,13 @@ const newFormHandler = async (event) => {
     const start_time = document.querySelector('#start-time').value.trim();
     const end_time = document.querySelector('#end-time').value.trim();
 
-    console.log(title, description, date, location, start_time, end_time);
-
     if (title && description && date && location && start_time && end_time) {
         const response = await fetch('/api/events', {
             method: 'POST',
-            body: JSON.stringify({ title, description, date, location, start_time, end_time, }),
+            body: JSON.stringify({ title, description, date, location, start_time, end_time }),
             headers: {
-                'Content-Type': 'application/json',
-            },
+                'Content-Type': 'application/json'
+            }
         });
 
         if (response.ok) {
@@ -29,11 +27,11 @@ const newFormHandler = async (event) => {
 };
 
 const deleteButtonHandler = async (event) => {
-    if (event.target.hasAttribute('event-id')) {
-        const id = event.target.getAttribute('event-id');
+    if (event.target.hasAttribute('data-id')) {
+        const id = event.target.getAttribute('data-id');
 
         const response = await fetch(`/api/events/${id}`, {
-            method: 'DELETE',
+            method: 'DELETE'
         });
 
         if (response.ok) {
