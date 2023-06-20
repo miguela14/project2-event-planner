@@ -3,15 +3,60 @@
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body text-center">
-                    <h2 class="card-title">{{title}}</h2>
-                    <p class="card-text">Description: {{description}}</p>
-                    <p class="card-text">Created by: {{User.username}}</p>
-                    <p class="card-text">Start Time: {{start_time}}</p>
-                    <p class="card-text">End Time: {{end_time}}</p>
-                    <p class="card-text">Location: {{location}}</p>
-                    <button class="btn btn-primary" id="invite">+ Invite</button>
+                    <h2 class="card-title" id="eventTitle">{{title}}</h2>
+                    <p class="card-text" id="eventDescription">Description: {{description}}</p>
+                    <p class="card-text" id="eventCreator">Created by: {{User.username}}</p>
+                    <p class="card-text" id="eventStartTime">Start Time: {{start_time}}</p>
+                    <p class="card-text" id="eventEndTime">End Time: {{end_time}}</p>
+                    <p class="card-text" id="eventLocation">Location: {{location}}</p>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#emailModal">Invite</button>
+                    <script>
+                        window.userEmail = '{{userEmail}}';
+                    </script>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<!-- Email Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="emailModalLabel">Enter Email Addresses</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="emailForm">
+                    <div class="form-group">
+                        <label for="emailInput">Email Addresses (separated by commas)</label>
+                        <input type="text" class="form-control" id="emailInput" required>
+                        <small class="form-text text-muted">Maximum of 50 email addresses.</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="sendEmailButton" data-event-id="{{id}}">Send Email</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+<script id="emailCardTemplate" type="text/x-handlebars-template">
+    <h2>{{title}}</h2>
+    <p>Description: {{description}}</p>
+    <p>Created by: {{User.username}}</p>
+    <p>Start Time: {{start_time}}</p>
+    <p>End Time: {{end_time}}</p>
+    <p>Location: {{location}}</p>
+</script>
+<script src="../js/events.js"></script>
