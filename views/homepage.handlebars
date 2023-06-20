@@ -1,10 +1,9 @@
-
 <style></style>
 <div class="d-flex justify-content-center py-3">
     <div class="card w-75">
         <img src="https://images.unsplash.com/photo-1519750157634-b6d493a0f77c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGV2ZW50fGVufDB8fDB8fHww&w=1000&q=80"
             class="card-img-top" alt="eventhorizon">
-        <div class="card-body">
+        <div class="card-body text-center">
             <h5 class="card-title">EventHorizon</h5>
             <p class="card-text">Introducing EventHorizon, the innovative app designed to revolutionize the way people
                 create and organize events. With EventHorizon, convenience takes center stage, empowering users to
@@ -12,7 +11,21 @@
             </p>
             <a href="./login" class="btn btn-primary">Get Started</a>
         </div>
-        <div class="p-3 text-center">
+        <div class="container">
+            <h1 class="text-center py-3">Events:</h1>
+            <div class="row event-list">
+                {{#each events}}
+                <div class="col-lg-4 col-md-6">
+                    <div class="card mb-4 p-2">
+                        <h3 class="text-center"><a href="/events/{{id}}"><strong>{{title}}</strong></a></h3>
+                        <p class="card-text text-center ">{{description}}</p>
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+
+    <div class="p-3 text-center">
 
         <h1 class="text-center">OUR REVIEWS</h1>
         <i class="bi bi-star-fill"></i>
@@ -20,33 +33,37 @@
         <i class="bi bi-star-fill"></i>
         <i class="bi bi-star-fill"></i>
         <i class="bi bi-star-fill"></i>
-        
-            
-        </div>
-        <div class="container-fluid ">
-            <div class="d-flex position-relative">
-                <img src="https://images.squarespace-cdn.com/content/v1/52ae5995e4b06d986ca9d04e/1582765924080-ZZT60RWPILYQ70L1EXF7/Headshots-Professional-Headshot-Lynchburg-Virginia-Photography-VA10.jpg?format=2500w" class="flex-shrink-0 me-3 w-auto p-3 d-none d-md-block" alt="123" style="max-width: 150px; max-height: auto;">
-                <div>
-                    <h5 class="mt-0 pt-5">Samantha Rodriguez</h5>
-                    <h5>Event Management Consultant</h5>
-                    <p class="p-1">"A game-changer for event management! The intuitive interface and powerful
-                        features have streamlined my workflow, saving time and effort. Highly recommended for
-                        seamless and efficient event planning"</p>
-                </div>
-            </div>
-            <div class="d-flex position-relative">
-                <img src="https://solarisstudios.com/wp-content/gallery/professional-headshot-studio/cache/Professional_Headshot_Studio_022.jpg-nggid042477-ngg0dyn-0x360-00f0w010c010r110f110r010t010.jpg" class="flex-shrink-0 me-3 w-auto p-3 d-none d-md-block" alt="123" style="max-width: 150px; max-height: auto;">
-                <div>
-                    <h5 class="mt-0 pt-5">Emily Thompson</h5>
-                    <h5>Event Planning Specialist</h5>
-                    <p class="p-1">"The ultimate event reservation solution! User-friendly interface, extensive
-                        options, seamless process, and excellent customer support. Highly recommended for
-                        stress-free event planning"</p>
-                </div>
-            </div>
-        </div>
+
 
     </div>
+    <div class="container-fluid ">
+        <div class="d-flex position-relative">
+            <img src="https://images.squarespace-cdn.com/content/v1/52ae5995e4b06d986ca9d04e/1582765924080-ZZT60RWPILYQ70L1EXF7/Headshots-Professional-Headshot-Lynchburg-Virginia-Photography-VA10.jpg?format=2500w"
+                class="flex-shrink-0 me-3 w-auto p-3 d-none d-md-block" alt="123"
+                style="max-width: 150px; max-height: auto;">
+            <div>
+                <h5 class="mt-0 pt-5">Samantha Rodriguez</h5>
+                <h5>Event Management Consultant</h5>
+                <p class="p-1">"A game-changer for event management! The intuitive interface and powerful
+                    features have streamlined my workflow, saving time and effort. Highly recommended for
+                    seamless and efficient event planning"</p>
+            </div>
+        </div>
+        <div class="d-flex position-relative">
+            <img src="https://solarisstudios.com/wp-content/gallery/professional-headshot-studio/cache/Professional_Headshot_Studio_022.jpg-nggid042477-ngg0dyn-0x360-00f0w010c010r110f110r010t010.jpg"
+                class="flex-shrink-0 me-3 w-auto p-3 d-none d-md-block" alt="123"
+                style="max-width: 150px; max-height: auto;">
+            <div>
+                <h5 class="mt-0 pt-5">Emily Thompson</h5>
+                <h5>Event Planning Specialist</h5>
+                <p class="p-1">"The ultimate event reservation solution! User-friendly interface, extensive
+                    options, seamless process, and excellent customer support. Highly recommended for
+                    stress-free event planning"</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 </div>
 
 <!-- hero bottom (reviews) -->

@@ -12,11 +12,11 @@ Event.init(
             autoIncrement: true,
         },
         title: {
-            type: DataTypes.STRING(511),
+            type: DataTypes.STRING,
             allowNull: false,
         },
         description: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(1000),
             allowNull: false,
         },
         date: {
