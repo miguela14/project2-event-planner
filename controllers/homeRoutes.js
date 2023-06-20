@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 
 // Get one event by id
 // GET: /events/:id
-router.get('/events/:id', async (req, res) => {
+router.get('/events/:id', withAuth, async (req, res) => {
   try {
     const eventData = await Event.findByPk(req.params.id, {
       include: [
@@ -69,7 +69,8 @@ router.get('/profile', withAuth, async (req, res) => {
     res.render('profile', {
       events,
       user,
-      logged_in: true
+      logged_in: true,
+      userEmail: req.session.email
     });
   } catch (err) {
     res.status(500).json(err);
