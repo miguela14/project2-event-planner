@@ -1,14 +1,14 @@
-<div class="container">
+<div class="card p-3">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <div class="card">
                 <div class="card-body text-center">
                     <h2 class="card-title" id="eventTitle">{{title}}</h2>
-                    <p class="card-text" id="eventDescription">Description: {{description}}</p>
-                    <p class="card-text" id="eventCreator">Created by: {{User.username}}</p>
-                    <p class="card-text" id="eventStartTime">Start Time: {{start_time}}</p>
-                    <p class="card-text" id="eventEndTime">End Time: {{end_time}}</p>
-                    <p class="card-text" id="eventLocation">Location: {{location}}</p>
+                    <p class="card-text text-center p-2" id="eventDescription"><strong>Description:</strong><br>{{description}}</p>
+                    <li class="card-text justify-content-between d-flex p-2" id="eventCreator"><strong>Created by:</strong>{{User.username}}</li>
+                    <li class="card-text justify-content-between d-flex p-2" id="eventStartTime"><strong>Start Time:</strong>{{start_time}}</li>
+                    <li class="card-text justify-content-between d-flex p-2" id="eventEndTime"><strong>End Time:</strong>{{end_time}}</li>
+                    <li class="card-text justify-content-between d-flex p-2" id="eventLocation"><strong>Location:</strong>{{location}}</li>
                     <button type="button" class="btn btn-primary" data-toggle="modal"
                         data-target="#emailModal">Invite</button>
                     <script>
