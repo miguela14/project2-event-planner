@@ -7,7 +7,9 @@ router.post('/send-email', async (req, res) => {
     try {
         const { eventId, emailAddresses } = req.body;
 
-        console.log(eventId, emailAddresses);
+        const userInviter = await User.findByPk(req.session.user_id, {
+            attributes: { exclude: ['password'] },
+        });
 
         const eventData = await Event.findByPk(eventId, {
             include: [{ model: User, attributes: ['username'] }],
