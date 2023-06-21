@@ -12,7 +12,7 @@ Event.init(
             autoIncrement: true,
         },
         title: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(511),
             allowNull: false,
         },
         description: {

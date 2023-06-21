@@ -1,50 +1,66 @@
-<div class="new-event-form">
-    <div class="mb-3">
-        <label for="event-title" class="form-label">Event Title</label>
-        <input type="text" class="form-control" id="event-title" required>
-    </div>
-    <div class="mb-3">
-        <label for="event-description" class="form-label">Description</label>
-        <textarea class="form-control" id="event-description" rows="3" required></textarea>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="event-date" class="form-label">Date</label>
-            <input type="date" class="form-control" id="event-date" required>
+<div class="d-flex justify-content-center p-5">
+    <div class="card w-75 p-3">
+
+        <div class="new-event-form">
+            <div class="mb-3">
+                <h1>Event Form</h1>
+                <label for="event-title" class="form-label">Event Title</label>
+                <input type="text" class="form-control" id="event-title" required>
+            </div>
+            <div class="mb-3">
+                <label for="event-description" class="form-label">Description</label>
+                <textarea class="form-control" id="event-description" rows="3" required></textarea>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="event-date" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="event-date" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="event-location" class="form-label">Location</label>
+                    <input type="text" class="form-control" id="event-location" required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label for="start-time" class="form-label">Start Time</label>
+                    <input type="time" class="form-control" id="start-time" required>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="end-time" class="form-label">End Time</label>
+                    <input type="time" class="form-control" id="end-time" required>
+                </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <button type="button" class="btn btn-primary" id="event-submit">Create Event</button>
+            </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <label for="event-location" class="form-label">Location</label>
-            <input type="text" class="form-control" id="event-location" required>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6 mb-3">
-            <label for="start-time" class="form-label">Start Time</label>
-            <input type="time" class="form-control" id="start-time" required>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label for="end-time" class="form-label">End Time</label>
-            <input type="time" class="form-control" id="end-time" required>
-        </div>
-    </div>
-    <div class="col-md-6 mb-3">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="event-submit">Submit</button>
     </div>
 </div>
 
-<div class="event-list">
+
+<div class="container">
+    <h1 class="text-center py-3">Saved Events</h1>
+  <div class="row event-list">
     {{#each user.Events}}
-    <div class="event-card">
-        <h2><a href="/events/{{id}}">{{title}}</a></h2>
-        <p>{{description}}</p>
-        <p>Date: {{date}}</p>
-        <p>Location: {{location}}</p>
-        <p>Start Time: {{start_time}}</p>
-        <p>End Time: {{end_time}}</p>
-        <button class="delete-event-btn" data-id="{{id}}">Delete Event</button>
+    <div class="col-lg-4 col-md-6">
+      <div class="card mb-4">
+        <h2 class="text-center"><a href="/events/{{id}}"><strong>{{title}}</strong></a></h2>
+        <p class="card-text text-center "><strong>{{description}}</strong></p>
+        <ul class="list-group list-group-flush justify-content-between">
+          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>Date:</strong></label>{{date}}</li>
+          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>Location:</strong></label>{{location}}</li>
+          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>Start Time:</strong></label>{{start_time}}</li>
+          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>End Time:</strong></label>{{end_time}}</li>
+        </ul>
+        <button class="delete-event-btn btn btn-danger" data-id="{{id}}">Delete Event</button>
+      </div>
     </div>
     {{/each}}
+  </div>
 </div>
+
+
+
 
 <script src="./js/profile.js"></script>

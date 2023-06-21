@@ -1,0 +1,14 @@
+.card {
+    /* Default width */
+    width: 100%;
+
+    /* Other styles */
+    /* ... */
+}
+
+@media (min-width: 768px) {
+    .card {
+        /* Width after the breakpoint is met */
+        width: 75%;
+    }
+}
