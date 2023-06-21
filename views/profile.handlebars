@@ -41,23 +41,27 @@
 
 <div class="container">
     <h1 class="text-center py-3">Saved Events</h1>
-  <div class="row event-list">
-    {{#each user.Events}}
-    <div class="col-lg-4 col-md-6">
-      <div class="card mb-4">
-        <h2 class="text-center"><a href="/events/{{id}}"><strong>{{title}}</strong></a></h2>
-        <p class="card-text text-center "><strong>{{description}}</strong></p>
-        <ul class="list-group list-group-flush justify-content-between">
-          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>Date:</strong></label>{{date}}</li>
-          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>Location:</strong></label>{{location}}</li>
-          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>Start Time:</strong></label>{{start_time}}</li>
-          <li class="list-group-item text-center justify-content-between d-flex"><label><strong>End Time:</strong></label>{{end_time}}</li>
-        </ul>
-        <button class="delete-event-btn btn btn-danger" data-id="{{id}}">Delete Event</button>
-      </div>
+    <div class="row event-list">
+        {{#each user.Events}}
+        <div class="col-lg-4 col-md-6">
+            <div class="card mb-4">
+                <h2 class="text-center"><a href="/events/{{id}}"><strong>{{title}}</strong></a></h2>
+                <p class="card-text text-center "><strong>{{description}}</strong></p>
+                <ul class="list-group list-group-flush justify-content-between">
+                    <li class="list-group-item text-center justify-content-between d-flex">
+                        <label><strong>Date:</strong></label>{{date}}</li>
+                    <li class="list-group-item text-center justify-content-between d-flex">
+                        <label><strong>Location:</strong></label>{{location}}</li>
+                    <li class="list-group-item text-center justify-content-between d-flex"><label><strong>Start
+                                Time:</strong></label>{{start_time}}</li>
+                    <li class="list-group-item text-center justify-content-between d-flex"><label><strong>End
+                                Time:</strong></label>{{end_time}}</li>
+                </ul>
+                <button class="delete-event-btn btn btn-danger" data-id="{{id}}">Delete Event</button>
+            </div>
+        </div>
+        {{/each}}
     </div>
-    {{/each}}
-  </div>
 </div>
 
 
